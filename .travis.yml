@@ -24,7 +24,7 @@ before_install:
        tags: true 
 notifications:
    email:
-   recipients:
-   - balage06@gmail.com
-   on_success: always
-   on_failure: always 
+       recipients:
+       - balage06@gmail.com
+       on_success: always
+       on_failure: always

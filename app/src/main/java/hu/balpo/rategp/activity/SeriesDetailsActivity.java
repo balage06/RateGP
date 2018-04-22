@@ -5,13 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import hu.balpo.rategp.R;
-import hu.balpo.rategp.network.SeriesApi;
 import hu.balpo.rategp.presenter.SeriesDetailsPresenter;
 import hu.balpo.rategp.screen.SeriesDetailsScreen;
 
 public class SeriesDetailsActivity  extends AppCompatActivity implements SeriesDetailsScreen{
 
-    private SeriesApi seriesApi;
     private SeriesDetailsPresenter seriesDetailsPresenter;
 
     @Override

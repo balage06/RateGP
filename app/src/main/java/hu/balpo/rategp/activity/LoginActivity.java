@@ -4,14 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import hu.balpo.rategp.R;
-import hu.balpo.rategp.network.AuthApi;
 import hu.balpo.rategp.presenter.LoginPresenter;
 import hu.balpo.rategp.screen.LoginScreen;
 
 public class LoginActivity extends AppCompatActivity implements LoginScreen{
 
     private LoginPresenter loginPresenter;
-    private AuthApi authApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

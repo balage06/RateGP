@@ -10,4 +10,9 @@ public class InteractorModule {
     public LoginInteractor provideLoginInteractor(){
         return new LoginInteractor();
     }
+
+    @Provides
+    public MainInteractor mainInteractor(){
+        return new MainInteractor();
+    }
 }

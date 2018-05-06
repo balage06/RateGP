@@ -1,5 +1,6 @@
 package hu.balpo.rategp.network.api;
 
+import hu.balpo.rategp.model.ApiResponse;
 import hu.balpo.rategp.model.User;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -12,17 +13,8 @@ import java.util.Map;
 
 public interface UserApi {
 
-  /**
-   * Create user
-   * This can only be done by the logged in user.
-   * @param body Created user object
-   * @return Call<Void>
-   */
-
-  @POST("user")
-  Call<Void> createUser(
-          @Body User body
-  );
+  @POST("login")
+  Call<ApiResponse> login();
 
 
   /**

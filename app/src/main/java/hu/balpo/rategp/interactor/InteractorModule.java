@@ -1,5 +1,7 @@
 package hu.balpo.rategp.interactor;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -15,4 +17,8 @@ public class InteractorModule {
     public MainInteractor mainInteractor(){
         return new MainInteractor();
     }
+
+    @Provides
+    @Singleton
+    public DataStoreInteractor dataStoreInteractor() {return new DataStoreInteractor();}
 }

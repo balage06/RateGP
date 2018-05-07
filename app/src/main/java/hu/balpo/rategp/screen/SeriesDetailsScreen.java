@@ -1,5 +1,10 @@
 package hu.balpo.rategp.screen;
 
+import java.util.List;
+
+import hu.balpo.rategp.model.Event;
+
 public interface SeriesDetailsScreen {
-    void showSeriesDetails();
+    void showSeriesDetails(List<Event> events);
+    void showSnackBarWithMessage(String message);
 }

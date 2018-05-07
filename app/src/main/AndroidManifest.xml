@@ -10,21 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".RateGpApplication">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity" android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.EventDetailsActivity">
+        <activity android:name=".activity.EventDetailsActivity" android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.SeriesDetailsActivity">
+        <activity android:name=".activity.SeriesDetailsActivity" android:screenOrientation="portrait">
         </activity>
         <meta-data android:name="DATABASE" android:value="rategp.db" />
-        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="VERSION" android:value="2" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="hu.balpo.rategp.datastore.entity" />
     </application>

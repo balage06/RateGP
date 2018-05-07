@@ -21,4 +21,7 @@ public class InteractorModule {
     @Provides
     @Singleton
     public DataStoreInteractor dataStoreInteractor() {return new DataStoreInteractor();}
+
+    @Provides
+    public SeriesDetailsInteractor seriesDetailsInteractor(){return new SeriesDetailsInteractor();}
 }

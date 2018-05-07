@@ -1,10 +1,12 @@
 package hu.balpo.rategp;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.orm.SugarApp;
 
 import hu.balpo.rategp.screen.UIModule;
+import io.fabric.sdk.android.Fabric;
 
 public class RateGpApplication extends SugarApp {
 
@@ -16,6 +18,7 @@ public class RateGpApplication extends SugarApp {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         injector = DaggerRateGpApplicationComponent.builder().uIModule(new UIModule(this)).build();
 

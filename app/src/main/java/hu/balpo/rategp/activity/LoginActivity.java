@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import javax.inject.Inject;
 
@@ -17,6 +21,10 @@ import hu.balpo.rategp.presenter.LoginPresenter;
 import hu.balpo.rategp.screen.LoginScreen;
 
 public class LoginActivity extends AppCompatActivity implements LoginScreen{
+
+    public static final String TAG = "LoginActivity";
+
+    private Tracker mTracker;
 
     @Inject
     protected LoginPresenter loginPresenter;
@@ -41,12 +49,23 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen{
 
         loginPresenter.attachView(this);
 
+        RateGpApplication application = (RateGpApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loginPresenter.onLoginButtonPressed(username.getText().toString(),password.getText().toString());
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "Setting screen name: " + TAG);
+        mTracker.setScreenName("Image~" + TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

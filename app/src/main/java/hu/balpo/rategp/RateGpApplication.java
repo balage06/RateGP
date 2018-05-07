@@ -1,10 +1,15 @@
 package hu.balpo.rategp;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.orm.SugarApp;
 
 import hu.balpo.rategp.screen.UIModule;
 
 public class RateGpApplication extends SugarApp {
+
+    private static GoogleAnalytics sAnalytics;
+    private static Tracker sTracker;
 
     public static RateGpApplicationComponent injector;
 
@@ -13,5 +18,20 @@ public class RateGpApplication extends SugarApp {
         super.onCreate();
 
         injector = DaggerRateGpApplicationComponent.builder().uIModule(new UIModule(this)).build();
+
+        sAnalytics = GoogleAnalytics.getInstance(this);
+    }
+
+    /**
+     * Gets the default {@link Tracker} for this {@link RateGpApplication}.
+     * @return tracker
+     */
+    synchronized public Tracker getDefaultTracker() {
+        // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+        if (sTracker == null) {
+            sTracker = sAnalytics.newTracker(R.xml.global_tracker);
+        }
+
+        return sTracker;
     }
 }

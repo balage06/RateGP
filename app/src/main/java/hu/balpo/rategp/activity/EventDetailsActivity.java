@@ -70,6 +70,8 @@ public class EventDetailsActivity extends AppCompatActivity implements EventDeta
                 newReview.setRating((int)eventReviewRatingBar.getRating());
                 newReview.setUsername(authenticationInterceptor.getUsername());
                 mainInteractor.postReview(serie.getSerieId(), event.getEventId(), newReview);
+                eventReviewEditText.setText("");
+                eventReviewRatingBar.setRating(0);
             }
         });
     }

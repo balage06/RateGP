@@ -6,6 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 import hu.balpo.rategp.presenter.EventDetailsPresenter;
 import hu.balpo.rategp.presenter.LoginPresenter;
+import hu.balpo.rategp.presenter.ReviewListPresenter;
 import hu.balpo.rategp.presenter.SeriesDetailsPresenter;
 import hu.balpo.rategp.presenter.SeriesListPresenter;
 import hu.balpo.rategp.presenter.TopListPresenter;
@@ -47,5 +48,8 @@ public class UIModule {
     public EventDetailsPresenter eventDetailsPresenter(){
         return new EventDetailsPresenter();
     }
+
+    @Provides
+    public ReviewListPresenter reviewListPresenter() { return new ReviewListPresenter(); }
 
 }

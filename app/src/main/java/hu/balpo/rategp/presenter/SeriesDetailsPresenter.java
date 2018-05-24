@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import hu.balpo.rategp.RateGpApplication;
+import hu.balpo.rategp.datastore.entity.EventRecord;
 import hu.balpo.rategp.interactor.SeriesDetailsInteractor;
 import hu.balpo.rategp.model.Event;
 import hu.balpo.rategp.screen.SeriesDetailsScreen;
@@ -25,7 +26,7 @@ public class SeriesDetailsPresenter {
         this.screen = null;
     }
 
-    public void onSeriesDetailsLoaded(List<Event> events){
+    public void onSeriesDetailsLoaded(List<EventRecord> events){
         this.screen.showSeriesDetails(events);
     }
 }

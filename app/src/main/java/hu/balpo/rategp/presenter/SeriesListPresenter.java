@@ -13,6 +13,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import hu.balpo.rategp.RateGpApplication;
+import hu.balpo.rategp.datastore.entity.SerieRecord;
 import hu.balpo.rategp.event.SeriesListEvent;
 import hu.balpo.rategp.interactor.DataStoreInteractor;
 import hu.balpo.rategp.interactor.MainInteractor;
@@ -40,7 +41,7 @@ public class SeriesListPresenter {
         EventBus.getDefault().unregister(this);
     }
 
-    public void onSeriesListUpdated(List<Serie> series){
+    public void onSeriesListUpdated(List<SerieRecord> series){
         this.screen.showSeriesList(series);
     }
 
@@ -60,7 +61,9 @@ public class SeriesListPresenter {
             }
             dataStoreInteractor.saveSeriesListToDataStore(seriesListEvent.getSeries());
 
-            this.screen.showSeriesList(seriesListEvent.getSeries());
+            List<SerieRecord> series = SerieRecord.listAll(SerieRecord.class);
+            this.screen.showSeriesList(series);
+            this.screen.showSnackBarWithMessage("Synchronized data with backend.");
         }
     }
 

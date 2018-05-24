@@ -11,19 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hu.balpo.rategp.R;
+import hu.balpo.rategp.datastore.entity.EventRecord;
+import hu.balpo.rategp.datastore.entity.SerieRecord;
 import hu.balpo.rategp.model.Serie;
 
 public class SeriesListAdapter extends BaseAdapter {
 
-    private List<Serie> series = new ArrayList<>();
+    private List<SerieRecord> series = new ArrayList<>();
 
     public SeriesListAdapter(){}
 
-    public SeriesListAdapter(List<Serie> series){
+    public SeriesListAdapter(List<SerieRecord> series){
         this.series = series;
     }
 
-    public void setSeries(List<Serie> series){
+    public void setSeries(List<SerieRecord> series){
         this.series = series;
     }
 
@@ -44,7 +46,7 @@ public class SeriesListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final Serie serie = series.get(position);
+        final SerieRecord serie = series.get(position);
 
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.fragment_row_serieslist, null);
@@ -53,7 +55,10 @@ public class SeriesListAdapter extends BaseAdapter {
         title.setText(serie.getName());
 
         TextView details = itemView.findViewById(R.id.row2);
-        details.setText("Events: " + serie.getEvents().size());
+
+        List<EventRecord> events = EventRecord.find(EventRecord.class, "serie_Record = ?",String.valueOf(serie.getId()));
+
+        details.setText("Events: " + events.size());
         return itemView;
     }
 }

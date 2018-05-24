@@ -5,9 +5,12 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import hu.balpo.rategp.datastore.entity.Event;
-import hu.balpo.rategp.datastore.entity.Review;
-import hu.balpo.rategp.datastore.entity.Serie;
+import hu.balpo.rategp.datastore.entity.EventRecord;
+import hu.balpo.rategp.datastore.entity.ReviewRecord;
+import hu.balpo.rategp.datastore.entity.SerieRecord;
+import hu.balpo.rategp.model.Event;
+import hu.balpo.rategp.model.Review;
+import hu.balpo.rategp.model.Serie;
 
 @Singleton
 public class DataStoreInteractor {
@@ -16,35 +19,35 @@ public class DataStoreInteractor {
     public DataStoreInteractor(){}
 
     public static void clearDataStore(){
-        Review.deleteAll(Review.class);
-        Event.deleteAll(Event.class);
-        Serie.deleteAll(Serie.class);
+        ReviewRecord.deleteAll(ReviewRecord.class);
+        EventRecord.deleteAll(EventRecord.class);
+        SerieRecord.deleteAll(SerieRecord.class);
     }
 
-    public static void saveSeriesListToDataStore(List<hu.balpo.rategp.model.Serie> series){
-        for(hu.balpo.rategp.model.Serie serie : series){
-            Serie s = new Serie(serie.getName());
+    public static void saveSeriesListToDataStore(List<Serie> series){
+        for(Serie serie : series){
+            SerieRecord s = new SerieRecord(serie.getId(), serie.getName());
             s.save();
-            for(hu.balpo.rategp.model.Event event : serie.getEvents()){
-                Event e = new Event(event.getName(),s);
+            for(Event event : serie.getEvents()){
+                EventRecord e = new EventRecord(event.getId(),event.getName(),s);
                 e.save();
-                for(hu.balpo.rategp.model.Review review : event.getRatings()){
-                    Review r = new Review(review.getRating(), review.getComment(), review.getUsername(), e);
+                for(Review review : event.getRatings()){
+                    ReviewRecord r = new ReviewRecord(review.getId(),review.getRating(), review.getComment(), review.getUsername(), e);
                     r.save();
                 }
             }
         }
     }
 
-    public static List<Serie> getAllSeries(){
-        return Serie.listAll(Serie.class);
+    public static List<SerieRecord> getAllSeries(){
+        return SerieRecord.listAll(SerieRecord.class);
     }
 
-    public static List<Event> getAllEventsBySerie(Serie serie){
-        return Event.find(Event.class, "serie = ?", String.valueOf(serie.getId()));
+    public static List<EventRecord> getAllEventsBySerie(SerieRecord serie){
+        return EventRecord.find(EventRecord.class, "serie = ?", String.valueOf(serie.getId()));
     }
 
-    public static List<Review> getAllReviesByEvent(Event event){
-        return Review.find(Review.class, "event = ?", String.valueOf(event.getId()));
+    public static List<ReviewRecord> getAllReviesByEvent(EventRecord event){
+        return ReviewRecord.find(ReviewRecord.class, "event = ?", String.valueOf(event.getId()));
     }
 }

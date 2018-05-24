@@ -1,5 +1,6 @@
 package hu.balpo.rategp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -7,6 +8,7 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import java.util.List;
 
@@ -14,7 +16,9 @@ import javax.inject.Inject;
 
 import hu.balpo.rategp.R;
 import hu.balpo.rategp.RateGpApplication;
+import hu.balpo.rategp.activity.SeriesDetailsActivity;
 import hu.balpo.rategp.adapter.SeriesListAdapter;
+import hu.balpo.rategp.datastore.entity.SerieRecord;
 import hu.balpo.rategp.model.Serie;
 import hu.balpo.rategp.presenter.SeriesListPresenter;
 import hu.balpo.rategp.screen.SeriesListScreen;
@@ -51,7 +55,7 @@ public class SeriesListFragment extends ListFragment implements SeriesListScreen
     }
 
     @Override
-    public void showSeriesList(List<Serie> series) {
+    public void showSeriesList(List<SerieRecord> series) {
         seriesListAdapter.setSeries(series);
         seriesListAdapter.notifyDataSetChanged();
     }
@@ -61,4 +65,12 @@ public class SeriesListFragment extends ListFragment implements SeriesListScreen
         Snackbar.make(getActivity().findViewById(R.id.main_view),message,Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        SerieRecord serie = (SerieRecord) seriesListAdapter.getItem(position);
+        super.onListItemClick(l, v, position, id);
+        Intent startIntent = new Intent(getActivity(), SeriesDetailsActivity.class);
+        startIntent.putExtra("serieId", serie.getId());
+        getActivity().startActivity(startIntent);
+    }
 }

@@ -12,12 +12,18 @@ import okhttp3.Response;
 @Singleton
 public class AuthenticationInterceptor implements Interceptor {
     private String credentials;
+    private String username;
 
     @Inject
     public AuthenticationInterceptor(){}
 
-    public void setCredentials(String credentials){
+    public void setCredentials(String credentials, String username){
         this.credentials = credentials;
+        this.username = username;
+    }
+
+    public String getUsername(){
+        return username;
     }
 
     @Override

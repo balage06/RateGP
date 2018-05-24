@@ -11,19 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hu.balpo.rategp.R;
+import hu.balpo.rategp.datastore.entity.EventRecord;
+import hu.balpo.rategp.datastore.entity.ReviewRecord;
 import hu.balpo.rategp.model.Event;
 
 public class SeriesDetailsAdapter extends BaseAdapter {
 
-    private List<Event> events = new ArrayList<>();
+    private List<EventRecord> events = new ArrayList<>();
 
     public SeriesDetailsAdapter(){}
 
-    public SeriesDetailsAdapter(List<Event> events){
+    public SeriesDetailsAdapter(List<EventRecord> events){
         this.events = events;
     }
 
-    public void setEvents(List<Event> events){
+    public void setEvents(List<EventRecord> events){
         this.events = events;
     }
 
@@ -44,7 +46,7 @@ public class SeriesDetailsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final Event event = events.get(position);
+        final EventRecord event = events.get(position);
 
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.fragment_row_seriesdetails, null);
@@ -53,7 +55,9 @@ public class SeriesDetailsAdapter extends BaseAdapter {
         title.setText(event.getName());
 
         TextView details = itemView.findViewById(R.id.row2);
-        details.setText("Reviews: " + event.getRatings().size());
+
+        List<ReviewRecord> reviews = ReviewRecord.find(ReviewRecord.class, "event_Record = ?", String.valueOf(event.getId()));
+        details.setText("Reviews: " + reviews.size());
         return itemView;
     }
 }

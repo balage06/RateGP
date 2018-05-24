@@ -26,7 +26,7 @@ public class LoginInteractor {
     }
 
     public void performLogin(String username, String password){
-        authenticationInterceptor.setCredentials(Credentials.basic(username,password));
+        authenticationInterceptor.setCredentials(Credentials.basic(username,password), username);
 
         final Call<ApiResponse> login = userApi.login();
         login.enqueue(new Callback<ApiResponse>() {

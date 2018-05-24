@@ -9,9 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.Base64;
 import java.util.List;
 
 import javax.inject.Inject;

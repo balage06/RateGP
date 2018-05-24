@@ -19,7 +19,6 @@ import hu.balpo.rategp.RateGpApplication;
 import hu.balpo.rategp.activity.SeriesDetailsActivity;
 import hu.balpo.rategp.adapter.SeriesListAdapter;
 import hu.balpo.rategp.datastore.entity.SerieRecord;
-import hu.balpo.rategp.model.Serie;
 import hu.balpo.rategp.presenter.SeriesListPresenter;
 import hu.balpo.rategp.screen.SeriesListScreen;
 

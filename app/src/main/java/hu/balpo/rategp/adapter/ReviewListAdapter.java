@@ -12,10 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hu.balpo.rategp.R;
-import hu.balpo.rategp.datastore.entity.EventRecord;
 import hu.balpo.rategp.datastore.entity.ReviewRecord;
-import hu.balpo.rategp.datastore.entity.SerieRecord;
-import hu.balpo.rategp.model.Review;
 
 public class ReviewListAdapter extends BaseAdapter {
 

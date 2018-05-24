@@ -17,11 +17,8 @@ import javax.inject.Inject;
 import hu.balpo.rategp.R;
 import hu.balpo.rategp.RateGpApplication;
 import hu.balpo.rategp.activity.EventDetailsActivity;
-import hu.balpo.rategp.activity.SeriesDetailsActivity;
 import hu.balpo.rategp.adapter.SeriesDetailsAdapter;
 import hu.balpo.rategp.datastore.entity.EventRecord;
-import hu.balpo.rategp.datastore.entity.SerieRecord;
-import hu.balpo.rategp.model.Event;
 import hu.balpo.rategp.presenter.SeriesDetailsPresenter;
 import hu.balpo.rategp.screen.SeriesDetailsScreen;
 

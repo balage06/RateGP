@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RateGP</string>
+    <string name="event_review_title">Rate the event</string>
 </resources>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hu.balpo.rategp">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,29 +10,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name="com.orm.SugarApp">
-        <activity android:name=".activity.MainActivity">
+        android:name=".RateGpApplication">
+        <activity android:name=".activity.MainActivity" android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".activity.EventDetailsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan">
         </activity>
-        <activity android:name=".activity.EventDetailsActivity">
-        </activity>
-        <activity android:name=".activity.SeriesDetailsActivity">
+        <activity android:name=".activity.SeriesDetailsActivity" android:screenOrientation="portrait">
         </activity>
         <meta-data android:name="DATABASE" android:value="rategp.db" />
-        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="VERSION" android:value="4" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="hu.balpo.rategp.datastore.entity" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="aeee7e019773a2d1e37a46f84b46a6b9322b8fcf" />
     </application>
 
 </manifest>

@@ -5,4 +5,6 @@ public interface LoginScreen {
     void hideLoginButton();
     void showProgressBar();
     void hideProgressBar();
+    void showSnackBarWithMessage(String message);
+    void switchToMainActivity();
 }
